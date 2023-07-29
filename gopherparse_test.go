@@ -1,6 +1,7 @@
 package gopherparse
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -95,6 +96,10 @@ func TestLoadHTMLFile(t *testing.T) {
 
 	// Test FindByTag
 	h1Elements := gpObj.FindByTag("h1")
+	for _, h1 := range h1Elements {
+		fmt.Println("Heading:", h1.FirstChild.Data)
+	}
+	fmt.Println("cassanova")
 	if len(h1Elements) != 1 {
 		t.Errorf("FindByTag - Expected 1 <h1> element, got %d", len(h1Elements))
 	}
