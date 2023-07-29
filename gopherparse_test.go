@@ -49,3 +49,68 @@ func TestLoadHTML(t *testing.T) {
 	// 	t.Errorf("SetText - Expected heading text 'Updated Heading', got '%s'", h1Updated.FirstChild.Data)
 	// }
 }
+
+func TestLoadXML(t *testing.T) {
+	xmlContent := `
+		<root>
+			<item>Item 1</item>
+			<item>Item 2</item>
+			<item class="highlight">Item 3</item>
+		</root>
+	`
+
+	// Test LoadXML
+	gpObj, err := LoadXML(xmlContent)
+	if err != nil {
+		t.Fatalf("LoadXML failed with error: %v", err)
+	}
+
+	// Test FindByTag
+	itemElements := gpObj.FindByTag("item")
+	if len(itemElements) != 3 {
+		t.Errorf("FindByTag - Expected 3 <item> elements, got %d", len(itemElements))
+	}
+
+	// Test FindByClass
+	highlightElements := gpObj.FindByClass("highlight")
+	if len(highlightElements) != 1 {
+		t.Errorf("FindByClass - Expected 1 element with class 'highlight', got %d", len(highlightElements))
+	}
+
+	// Test SetText
+	// gpObj.SetText("item", "Updated Item")
+	// itemUpdated := gpObj.FindByTag("item")[0]
+	// if itemUpdated.FirstChild.Data != "Updated Item" {
+	// 	t.Errorf("SetText - Expected item text 'Updated Item', got '%s'", itemUpdated.FirstChild.Data)
+	// }
+}
+
+func TestLoadHTMLFile(t *testing.T) {
+	// Test LoadHTMLFile with a sample HTML file
+	htmlFilePath := "testdata/sample.html"
+	gpObj, err := LoadHTMLFile(htmlFilePath)
+	if err != nil {
+		t.Fatalf("LoadHTMLFile failed with error: %v", err)
+	}
+
+	// Test FindByTag
+	h1Elements := gpObj.FindByTag("h1")
+	if len(h1Elements) != 1 {
+		t.Errorf("FindByTag - Expected 1 <h1> element, got %d", len(h1Elements))
+	}
+}
+
+func TestLoadXMLFile(t *testing.T) {
+	// Test LoadXMLFile with a sample XML file
+	xmlFilePath := "testdata/sample.xml"
+	gpObj, err := LoadXMLFile(xmlFilePath)
+	if err != nil {
+		t.Fatalf("LoadXMLFile failed with error: %v", err)
+	}
+
+	// Test FindByTag
+	itemElements := gpObj.FindByTag("item")
+	if len(itemElements) != 3 {
+		t.Errorf("FindByTag - Expected 3 <item> elements, got %d", len(itemElements))
+	}
+}

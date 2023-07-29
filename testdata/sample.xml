@@ -1,0 +1,5 @@
+<root>
+    <item>Item 1</item>
+    <item>Item 2</item>
+    <item class="highlight">Item 3</item>
+</root>
