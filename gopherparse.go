@@ -33,6 +33,15 @@ func LoadXML(xmlContent string) (*GopherParse, error) {
 
 
 
+// LoadXMLFile reads an XML file from the given path and returns a GopherParse object.
+func LoadXMLFile(filePath string) (*GopherParse, error) {
+	xmlContent, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	return LoadXML(string(xmlContent))
+}
+
 // FindByTag finds all elements with the specified tag name within the GopherParse object.
 func (gp *GopherParse) FindByTag(tagName string) []*html.Node {
 	var elements []*html.Node
