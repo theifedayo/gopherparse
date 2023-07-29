@@ -31,7 +31,14 @@ func LoadXML(xmlContent string) (*GopherParse, error) {
 	return &GopherParse{root: doc}, nil
 }
 
-
+// LoadHTMLFile reads an HTML file from the given path and returns a GopherParse object.
+func LoadHTMLFile(filePath string) (*GopherParse, error) {
+	htmlContent, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	return LoadHTML(string(htmlContent))
+}
 
 // LoadXMLFile reads an XML file from the given path and returns a GopherParse object.
 func LoadXMLFile(filePath string) (*GopherParse, error) {
