@@ -105,3 +105,10 @@ To get the HTML representation of the document, you can use the Render method:
 ```go
 htmlString := gpObj.Render()
 // Get the HTML string representation of the document
+```
+
+### Contributing
+Feel free to contribute to GopherParse by opening issues, submitting pull requests, or suggesting new features. Your contributions are highly appreciated!
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
