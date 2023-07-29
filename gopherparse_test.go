@@ -44,11 +44,11 @@ func TestLoadHTML(t *testing.T) {
 	}
 
 	// Test SetText
-	// gpObj.SetText("h1", "Updated Heading")
-	// h1Updated := gpObj.FindByTag("h1")[0]
-	// if h1Updated.FirstChild.Data != "Updated Heading" {
-	// 	t.Errorf("SetText - Expected heading text 'Updated Heading', got '%s'", h1Updated.FirstChild.Data)
-	// }
+	gpObj.SetText("h1", "Updated Heading")
+	h1Updated := gpObj.FindByTag("h1")[0]
+	if h1Updated.FirstChild.Data != "Updated Heading" {
+		t.Errorf("SetText - Expected heading text 'Updated Heading', got '%s'", h1Updated.FirstChild.Data)
+	}
 }
 
 func TestLoadXML(t *testing.T) {
@@ -78,12 +78,21 @@ func TestLoadXML(t *testing.T) {
 		t.Errorf("FindByClass - Expected 1 element with class 'highlight', got %d", len(highlightElements))
 	}
 
-	// Test SetText
-	// gpObj.SetText("item", "Updated Item")
-	// itemUpdated := gpObj.FindByTag("item")[0]
-	// if itemUpdated.FirstChild.Data != "Updated Item" {
-	// 	t.Errorf("SetText - Expected item text 'Updated Item', got '%s'", itemUpdated.FirstChild.Data)
-	// }
+	//Test SetText
+	gpObj.SetText("item", "Updated Item")
+	itemUpdated := gpObj.FindByTag("item")[0]
+	expectedText := "Updated Item"
+	if itemUpdated.FirstChild == nil {
+		t.Errorf("SetText - Expected item text '%s', but got nil", expectedText)
+	} else if itemUpdated.FirstChild.Data != expectedText {
+		t.Errorf("SetText - Expected item text '%s', got '%s'", expectedText, itemUpdated.FirstChild.Data)
+	}
+
+	// Print the updated XML content
+	updatedXML := gpObj.Render()
+	fmt.Println("Updated XML content:")
+	fmt.Println(updatedXML)
+
 }
 
 func TestLoadHTMLFile(t *testing.T) {
@@ -96,10 +105,7 @@ func TestLoadHTMLFile(t *testing.T) {
 
 	// Test FindByTag
 	h1Elements := gpObj.FindByTag("h1")
-	for _, h1 := range h1Elements {
-		fmt.Println("Heading:", h1.FirstChild.Data)
-	}
-	fmt.Println("cassanova")
+
 	if len(h1Elements) != 1 {
 		t.Errorf("FindByTag - Expected 1 <h1> element, got %d", len(h1Elements))
 	}

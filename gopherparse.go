@@ -89,7 +89,18 @@ func (gp *GopherParse) FindByClass(className string) []*html.Node {
 func (gp *GopherParse) SetText(tagName, text string) {
 	elements := gp.FindByTag(tagName)
 	for _, elem := range elements {
-		elem.Data = text
+		// Check if the element has child nodes
+		if elem.FirstChild != nil && elem.FirstChild.Type == html.TextNode {
+			// Update the existing text node
+			elem.FirstChild.Data = text
+		} else {
+			// Create a new text node and append it as the first child
+			textNode := &html.Node{
+				Type: html.TextNode,
+				Data: text,
+			}
+			elem.AppendChild(textNode)
+		}
 	}
 }
 
