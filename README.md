@@ -114,15 +114,28 @@ Feel free to contribute to GopherParse by opening issues, submitting pull reques
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ### Roadmap
-- [x] Oracle
-- [x] MySQL
-- [x] Microsoft SQL Server
-- [x] PostgreSQL
-- [ ] Redis
-- [ ] Elasticsearch
-- [x] SQLite
-- [x] MariaDB
-- [ ] Solr
-- [ ] Neo4j
-- [ ] HBase
-- [x] Couchbase
+- [x] Parsing HTML and XML documents.
+- [x] Reading and parsing content from HTML and XML files.
+- [x] Finding elements by tag name within the document.
+- [x] Finding elements by class name within the document.
+- [x] Setting the text content of elements with the specified tag name.
+- [x] Rendering the GopherParse object into an HTML string.
+- [ ] Support for Selectors: Implement a selector engine for complex queries.
+- [ ] Element Manipulation: Add, remove, and modify attributes of elements.
+- [ ] Traversing: Methods to traverse the document tree.
+- [ ] Filtering: Filter selected elements based on specific conditions.
+- [ ] Element Creation: Programmatically create and insert new elements.
+- [ ] Text Searching and Highlighting: Search for specific text and highlight matches.
+- [ ] Error Handling: Improve error messages and context for better debugging.
+- [ ] Advanced Rendering Options: Control over rendering, indentation, and minification.
+- [ ] Event Handling: Attach event listeners to elements and respond to interactions.
+- [ ] Performance Optimization: Optimize parsing and manipulation for efficiency.
+- [ ] Data Extraction: Extract data from structured documents automatically.
+- [ ] XPath Support: Add support for XPath expressions as an alternative querying method.
+
+Please note that the roadmap is subject to change based on feedback, contributions, and evolving requirements. Contributions and ideas from golang community are highly encouraged to shape the future development of GopherParse.
+
+
+
+
+
