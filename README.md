@@ -112,3 +112,17 @@ Feel free to contribute to GopherParse by opening issues, submitting pull reques
 
 ### License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+### Roadmap
+- [x] Oracle
+- [x] MySQL
+- [x] Microsoft SQL Server
+- [x] PostgreSQL
+- [ ] Redis
+- [ ] Elasticsearch
+- [x] SQLite
+- [x] MariaDB
+- [ ] Solr
+- [ ] Neo4j
+- [ ] HBase
+- [x] Couchbase
