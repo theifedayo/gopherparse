@@ -1,7 +1,6 @@
 package gopherparse
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -87,12 +86,6 @@ func TestLoadXML(t *testing.T) {
 	} else if itemUpdated.FirstChild.Data != expectedText {
 		t.Errorf("SetText - Expected item text '%s', got '%s'", expectedText, itemUpdated.FirstChild.Data)
 	}
-
-	// Print the updated XML content
-	updatedXML := gpObj.Render()
-	fmt.Println("Updated XML content:")
-	fmt.Println(updatedXML)
-
 }
 
 func TestLoadHTMLFile(t *testing.T) {
