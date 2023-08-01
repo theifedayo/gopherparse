@@ -6,6 +6,8 @@ import (
 	"strings"
 
 	"golang.org/x/net/html"
+	"github.com/ericchiang/css"
+
 )
 
 // GopherParse represents a GopherParse object, similar to Cheerio.
@@ -80,7 +82,7 @@ func (gp *GopherParse) FindByClass(className string) []*html.Node {
 		for c := n.FirstChild; c != nil; c = c.NextSibling {
 			find(c)
 		}
-	}
+	}	
 	find(gp.root)
 	return elements
 }
