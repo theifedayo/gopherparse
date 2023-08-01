@@ -1,7 +1,10 @@
 package gopherparse
 
 import (
+	"strings"
 	"testing"
+
+	"golang.org/x/net/html"
 )
 
 func TestLoadHTML(t *testing.T) {
@@ -116,5 +119,63 @@ func TestLoadXMLFile(t *testing.T) {
 	itemElements := gpObj.FindByTag("item")
 	if len(itemElements) != 3 {
 		t.Errorf("FindByTag - Expected 3 <item> elements, got %d", len(itemElements))
+	}
+}
+
+func createNodeFromHTML(htmlString string) (*html.Node, error) {
+	return html.Parse(strings.NewReader(htmlString))
+}
+
+func TestAddAttr(t *testing.T) {
+	htmlContent := `<div class="container"><p>Hello, World!</p></div>`
+	gp, err := LoadHTML(htmlContent)
+	if err != nil {
+		t.Fatalf("Failed to parse HTML: %v", err)
+	}
+
+	gp.AddAttr("div", "data-id", "123")
+	gp.AddAttr("p", "style", "color: red")
+
+	expectedHTML := `<html><head></head><body><div class="container" data-id="123"><p style="color: red">Hello, World!</p></div></body></html>`
+	renderedHTML := gp.Render()
+
+	if renderedHTML != expectedHTML {
+		t.Errorf("Expected:\n%s\nGot:\n%s", expectedHTML, renderedHTML)
+	}
+}
+
+func TestRemoveAttr(t *testing.T) {
+	htmlContent := `<div class="container" data-id="123"><p style="color: red">Hello, World!</p></div>`
+	gp, err := LoadHTML(htmlContent)
+	if err != nil {
+		t.Fatalf("Failed to parse HTML: %v", err)
+	}
+
+	gp.RemoveAttr("div", "data-id")
+	gp.RemoveAttr("p", "style")
+
+	expectedHTML := `<html><head></head><body><div class="container"><p>Hello, World!</p></div></body></html>`
+	renderedHTML := gp.Render()
+
+	if renderedHTML != expectedHTML {
+		t.Errorf("Expected:\n%s\nGot:\n%s", expectedHTML, renderedHTML)
+	}
+}
+
+func TestModifyAttr(t *testing.T) {
+	htmlContent := `<div class="container"><p>Hello, World!</p></div>`
+	gp, err := LoadHTML(htmlContent)
+	if err != nil {
+		t.Fatalf("Failed to parse HTML: %v", err)
+	}
+
+	gp.ModifyAttr("div", "class", "new-container")
+	gp.ModifyAttr("p", "style", "font-size: 16px")
+
+	expectedHTML := `<html><head></head><body><div class="new-container"><p style="font-size: 16px">Hello, World!</p></div></body></html>`
+	renderedHTML := gp.Render()
+
+	if renderedHTML != expectedHTML {
+		t.Errorf("Expected:\n%s\nGot:\n%s", expectedHTML, renderedHTML)
 	}
 }
