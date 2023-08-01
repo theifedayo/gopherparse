@@ -131,7 +131,17 @@ func (gp *GopherParse) AddAttr(tagName, key, value string) {
 	}
 }
 
-
+// RemoveAttr removes the attribute with the specified key from all elements with the given tag name within the GopherParse object.
+func (gp *GopherParse) RemoveAttr(tagName, key string) {
+	elements := gp.FindByTag(tagName)
+	for _, elem := range elements {
+		for i, attr := range elem.Attr {
+			if attr.Key == key {
+				elem.Attr = append(elem.Attr[:i], elem.Attr[i+1:]...)
+			}
+		}
+	}
+}
 
 
 
