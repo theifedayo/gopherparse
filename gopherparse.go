@@ -6,8 +6,6 @@ import (
 	"strings"
 
 	"golang.org/x/net/html"
-	"github.com/ericchiang/css"
-
 )
 
 // GopherParse represents a GopherParse object, similar to Cheerio.
@@ -82,7 +80,7 @@ func (gp *GopherParse) FindByClass(className string) []*html.Node {
 		for c := n.FirstChild; c != nil; c = c.NextSibling {
 			find(c)
 		}
-	}	
+	}
 	find(gp.root)
 	return elements
 }
@@ -106,10 +104,6 @@ func (gp *GopherParse) SetText(tagName, text string) {
 	}
 }
 
-
-func (gp *GopherParse) FindBySelector(selector string) []*html.Node {
-	
-}
 // Render renders the GopherParse object into an HTML string.
 func (gp *GopherParse) Render() string {
 	var buf bytes.Buffer
@@ -127,3 +121,22 @@ func containsClass(classList, className string) bool {
 	}
 	return false
 }
+
+
+// AddAttr adds an attribute with the specified key-value pair to all elements with the given tag name within the GopherParse object.
+func (gp *GopherParse) AddAttr(tagName, key, value string) {
+	elements := gp.FindByTag(tagName)
+	for _, elem := range elements {
+		elem.Attr = append(elem.Attr, html.Attribute{Key: key, Val: value})
+	}
+}
+
+
+
+
+
+
+
+
+
+
