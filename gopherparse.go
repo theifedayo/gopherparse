@@ -106,6 +106,10 @@ func (gp *GopherParse) SetText(tagName, text string) {
 	}
 }
 
+
+func (gp *GopherParse) FindBySelector(selector string) []*html.Node {
+	
+}
 // Render renders the GopherParse object into an HTML string.
 func (gp *GopherParse) Render() string {
 	var buf bytes.Buffer
