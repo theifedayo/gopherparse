@@ -143,7 +143,17 @@ func (gp *GopherParse) RemoveAttr(tagName, key string) {
 	}
 }
 
-
+// ModifyAttr modifies the value of the attribute with the specified key for all elements with the given tag name within the GopherParse object.
+func (gp *GopherParse) ModifyAttr(tagName, key, newValue string) {
+	elements := gp.FindByTag(tagName)
+	for _, elem := range elements {
+		for i, attr := range elem.Attr {
+			if attr.Key == key {
+				elem.Attr[i].Val = newValue
+			}
+		}
+	}
+}
 
 
 
