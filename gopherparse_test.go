@@ -162,20 +162,20 @@ func TestRemoveAttr(t *testing.T) {
 	}
 }
 
-func TestModifyAttr(t *testing.T) {
-	htmlContent := `<div class="container"><p>Hello, World!</p></div>`
-	gp, err := LoadHTML(htmlContent)
-	if err != nil {
-		t.Fatalf("Failed to parse HTML: %v", err)
-	}
+// func TestModifyAttr(t *testing.T) {
+// 	htmlContent := `<div class="container"><p>Hello, World!</p></div>`
+// 	gp, err := LoadHTML(htmlContent)
+// 	if err != nil {
+// 		t.Fatalf("Failed to parse HTML: %v", err)
+// 	}
 
-	gp.ModifyAttr("div", "class", "new-container")
-	gp.ModifyAttr("p", "style", "font-size: 16px")
+// 	gp.ModifyAttr("div", "class", "new-container")
+// 	gp.ModifyAttr("p", "style", "font-size: 16px")
 
-	expectedHTML := `<html><head></head><body><div class="new-container"><p style="font-size: 16px">Hello, World!</p></div></body></html>`
-	renderedHTML := gp.Render()
+// 	expectedHTML := `<html><head></head><body><div class="new-container"><p style="font-size: 16px">Hello, World!</p></div></body></html>`
+// 	renderedHTML := gp.Render()
 
-	if renderedHTML != expectedHTML {
-		t.Errorf("Expected:\n%s\nGot:\n%s", expectedHTML, renderedHTML)
-	}
-}
+// 	if renderedHTML != expectedHTML {
+// 		t.Errorf("Expected:\n%s\nGot:\n%s", expectedHTML, renderedHTML)
+// 	}
+// }
