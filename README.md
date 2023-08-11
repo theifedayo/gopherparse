@@ -121,7 +121,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [x] Setting the text content of elements with the specified tag name.
 - [x] Rendering the GopherParse object into an HTML string.
 - [ ] Support for Selectors: Implement a selector engine for complex queries.
-- [ ] Element Manipulation: Add, remove, and modify attributes of elements.
+- [x] Element Manipulation: Add, remove, and modify attributes of elements.
 - [ ] Traversing: Methods to traverse the document tree.
 - [ ] Filtering: Filter selected elements based on specific conditions.
 - [ ] Element Creation: Programmatically create and insert new elements.
